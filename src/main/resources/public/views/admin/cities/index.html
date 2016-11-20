@@ -1,0 +1,34 @@
+<div ui-view=""></div>
+
+<h4>Cities</h4>
+
+<button type="button" class="btn btn-primary" ui-sref="admin.cities.add">
+    Add
+</button>
+
+<br /><br />
+
+<table class="table">
+    <thead>
+    <th>City Code</th>
+    <th>City Name</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="city in cities">
+        <td>{{city.cityCode}}</td>
+        <td>{{city.name}}</td>
+        <td>
+            <button type="button" class="btn btn-warning" ui-sref="admin.cities.edit({cityCode: city.cityCode})">
+                Edit
+            </button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-danger" ng-click="delete(city)">
+                Delete
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>

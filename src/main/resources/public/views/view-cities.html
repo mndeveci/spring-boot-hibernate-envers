@@ -1,0 +1,25 @@
+<h1>List Cities</h1>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h1 class="panel-title">
+            Filter Cities
+        </h1>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label>Filter</label>
+            <input type="text" class="form-control" ng-model="filterText" />
+        </div>
+    </div>
+</div>
+
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="city in cities | filter: filterText">
+        <span class="label label-default">
+            {{city.cityCode}}
+        </span>
+        &nbsp;
+        {{city.name}}
+    </li>
+</ul>

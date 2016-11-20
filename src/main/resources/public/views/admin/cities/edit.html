@@ -1,0 +1,45 @@
+<div class="panel panel-default">
+
+    <div class="panel-body">
+
+        <h4>Edit City</h4>
+
+        <form ng-submit="update()">
+
+            <div class="form-group">
+                <label>City Code</label>
+                <input type="number" disabled class="form-control" ng-model="city.cityCode"/>
+            </div>
+
+            <div class="form-group">
+                <label>City Name</label>
+                <input type="text" class="form-control" ng-model="city.name" required="required"/>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Update
+            </button>
+
+
+        </form>
+
+        <br />
+
+        <div class="panel panel-warning" ng-if="edits && edits.length > 0">
+
+            <ul class="list-group">
+
+                <li class="list-group-item" ng-repeat="edit in edits">
+                    <span class="text-muted">
+                        Edit #{{$index}}:
+                    </span>
+                    &nbsp;
+                    {{edit.name}}
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+</div>

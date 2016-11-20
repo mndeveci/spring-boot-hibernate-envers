@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+
+    <div class="panel-body">
+
+        <h4>Add City</h4>
+
+        <form ng-submit="save()">
+
+            <div class="form-group">
+                <label>City Code</label>
+                <input type="number" class="form-control" ng-model="city.cityCode" required="required" />
+            </div>
+
+            <div class="form-group">
+                <label>City Name</label>
+                <input type="text" class="form-control" ng-model="city.name" required="required" />
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Add
+            </button>
+
+
+        </form>
+
+    </div>
+
+</div>
