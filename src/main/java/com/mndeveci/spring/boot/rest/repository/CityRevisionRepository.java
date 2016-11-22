@@ -1,6 +1,8 @@
 package com.mndeveci.spring.boot.rest.repository;
 
 import com.mndeveci.spring.boot.rest.model.City;
+import com.mndeveci.spring.boot.rest.model.EntityWithRevision;
+import com.mndeveci.spring.boot.rest.model.RevisionsEntity;
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,15 +29,20 @@ public class CityRevisionRepository {
     @Autowired
     private CityRepository cityRepository;
 
-    public List<City> listCityRevisions(Integer cityCode) {
+    public List<EntityWithRevision<City>> listCityRevisions(Integer cityCode) {
         AuditReader auditReader = AuditReaderFactory.get(entityManager);
         City cityObject = cityRepository.findOne(cityCode);
 
         List<Number> revisions = auditReader.getRevisions(City.class, cityCode);
 
-        List<City> cityRevisions = new ArrayList<>();
+        List<EntityWithRevision<City>> cityRevisions = new ArrayList<>();
         for (Number revision : revisions) {
-            cityRevisions.add(auditReader.find(City.class, cityCode, revision));
+            City cityRevision = auditReader.find(City.class, cityCode, revision);
+            Date revisionDate = auditReader.getRevisionDate(revision);
+
+            cityRevisions.add(
+                    new EntityWithRevision(
+                            new RevisionsEntity(revision.longValue(), revisionDate), cityRevision));
         }
 
         return cityRevisions;

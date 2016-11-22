@@ -1,6 +1,7 @@
 package com.mndeveci.spring.boot.rest.controller;
 
 import com.mndeveci.spring.boot.rest.model.City;
+import com.mndeveci.spring.boot.rest.model.EntityWithRevision;
 import com.mndeveci.spring.boot.rest.repository.CityRevisionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,7 @@ public class CityRevisionController {
 
 
     @RequestMapping("/revisions/{cityCode}")
-    public List<City> getCityRevisions(@PathVariable Integer cityCode) {
+    public List<EntityWithRevision<City>> getCityRevisions(@PathVariable Integer cityCode) {
         return cityRevisionRepository.listCityRevisions(cityCode);
     }
 

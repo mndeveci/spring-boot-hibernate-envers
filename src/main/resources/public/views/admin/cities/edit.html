@@ -31,10 +31,10 @@
 
                 <li class="list-group-item" ng-repeat="edit in edits">
                     <span class="text-muted">
-                        Edit #{{$index}}:
+                        Edit #{{edit.revision.revisionId}}: @:{{edit.revision.revisionDate | date : 'yyyy.MM.dd HH:mm:ss'}}
                     </span>
                     &nbsp;
-                    {{edit.name}}
+                    {{edit.entity.name}}
                 </li>
 
             </ul>
